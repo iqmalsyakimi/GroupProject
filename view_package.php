@@ -82,7 +82,7 @@ if (isset($_GET['PACKAGE_ID']) && is_numeric($_GET['PACKAGE_ID'])) {
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
             overflow: hidden;
-            min-height: 650px;
+            min-height: 750px;
             display: flex;
             flex-direction: column;
         }
