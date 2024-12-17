@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        body 
+        {
+         
+
+  margin: 0;
+  padding: 0;
+  background: url(images/bg.jpg);
+  background-size: cover;
+  font-family: sans-serif;
+}
+
+.container
+{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  width: 700px;
+  height: 420px;
+  border-radius: 5px;
+  border: 10px solid rgba(255,255,255,.2);
+  box-shadow: 10px 10px 10px rgba(0,0,0,.5);
+}
+.imgBx
+{
+  width: 350px;
+  height: 420px;
+  overflow: hidden;
+  float: left;
+}
+.imgBx img
+{
+  width: 100%;
+}
+.loginBox
+{
+  float: right;
+  width: 350px;
+  height: 420px;
+  box-sizing: border-box;
+  padding: 80px 40px;
+  background: rgba(255,255,255,.8);
+}
+h3
+{
+  margin: 50;
+  padding: 0;
+  color: #262626;
+}
+.loginBox input
+{
+  width: 100%;
+  margin-bottom: 20px;
+}
+.loginBox input[type="text"],
+.loginBox input[type="password"]
+{
+  border: none;
+  border-bottom: 2px solid #262626;
+  outline: none;
+  height: 40px;
+  color: #262626;
+  background: transparent;
+  font-size: 16px;
+  padding-left: 20px;
+  box-sizing: border-box;
+}
+::placeholder
+{
+  color: rgba(0,0,0,.5);
+}
+.inputBox
+{
+  position: relative;
+}
+.inputBox span
+{
+  position: absolute;
+  top: 10px;
+  color: #262626;
+}
+.loginBox input[type="submit"]
+{
+  border: none;
+  outline: none;
+  height: 40px;
+  font-size: 16px;
+  background: #ed292a;
+  color: #fff;
+  border-radius: 20px;
+  cursor: pointer; 
+}
+.loginBox a
+{
+  color: #262626;
+  font-size: 14px;
+  font-weight: bold;
+}
+header {
+    padding: 90px 30px 40px 50px; /* top right bottom left */
+}
+
+    </style>
+</head>
+<body>
+    <header><h1 align="center">WELCOME TO APPLE VACATION</h1></header>
+    <div class="container">
+      <div class="imgBx">
+        <img src="images/travel.jpg">
+      </div>
+    <div class="loginBox">
+
+        <h2>Login</h2>
+
+        <form method="POST" action="login0.php">
+            <?php include('errors.php'); ?>
+
+            <div class="form-group">
+                
+                <input type="text" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                
+                <input type="password" id="password" name="password" required>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" name="Submit" value="Login">
+            </div>
+
+            <div class="form-group">
+                <a href="registration.php">Forgot your password?</a>
+               
+            </div>
+        </form>
+    </div>
+</body>
+</html>

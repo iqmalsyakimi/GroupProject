@@ -1,0 +1,1781 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tourly - Travel Agency</title>
+
+  <!-- Custom CSS link -->
+  <style>/*-----------------------------------*\
+ * #style.css
+\*-----------------------------------*/
+
+/**
+ * copyright 2022 codewithsadee
+ */
+
+
+/*-----------------------------------*\
+ * #CUSTOM PROPERTY
+\*-----------------------------------*/
+
+:root {
+
+    /**
+     * colors
+     */
+  
+    --united-nations-blue: hsl(214, 56%, 58%);
+    --bright-navy-blue: hsl(214, 57%, 51%);
+    --spanish-gray: hsl(0, 0%, 60%);
+    --black-coral: hsl(225, 8%, 42%);
+    --oxford-blue: hsl(208, 97%, 12%);
+    --yale-blue: hsl(214, 72%, 33%);
+    --blue-ncs: hsl(197, 100%, 36%);
+    --gunmetal: hsl(206, 34%, 20%);
+    --gainsboro: hsl(0, 0%, 88%);
+    --cultured: hsl(0, 0%, 98%);
+    --white: hsl(0, 0%, 100%);
+    --black: hsl(0, 0%, 0%);
+    --onyx: hsl(0, 0%, 25%);
+    --jet: hsl(0, 0%, 20%);
+  
+    /**
+     * typography
+     */
+  
+    --ff-poppins: "Poppins", sans-serif;
+    --ff-montserrat: "Montserrat", sans-serif;
+  
+    --fs-1: calc(20px + 3.5vw);
+    --fs-2: calc(18px + 1.6vw);
+    --fs-3: calc(16px + 0.45vw);
+    --fs-4: 15px;
+    --fs-5: 14px;
+    --fs-6: 13px;
+    --fs-7: 12px;
+    --fs-8: 11px;
+  
+    --fw-500: 500;
+    --fw-600: 600;
+    --fw-700: 700;
+    --fw-800: 800;
+  
+    /**
+     * transition
+     */
+  
+    --transition: 0.25s ease-in-out;
+  
+    /**
+     * spacing
+     */
+  
+    
+  
+    /**
+     * border-radius
+     */
+  
+    --radius-15: 15px;
+    --radius-25: 25px;
+  
+  }
+  
+  
+  
+  
+  
+  /*-----------------------------------*\
+   * #RESET
+  \*-----------------------------------*/
+  
+  *, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  li { list-style: none; }
+  
+  a { text-decoration: none; }
+  
+  a,
+  img,
+  span,
+  input,
+  label,
+  button,
+  ion-icon { display: block; }
+  
+  input,
+  button {
+    background: none;
+    border: none;
+    font: inherit;
+  }
+  
+  button { cursor: pointer; }
+  
+  input { width: 100%; }
+  
+  ion-icon { pointer-events: none; }
+  
+  html {
+    font-family: var(--ff-poppins);
+    scroll-behavior: smooth;
+  }
+  
+  body { background: var(--white); }
+  
+  
+  
+  /*-----------------------------------*\
+   * #REUSED STYLE
+  \*-----------------------------------*/
+  
+  .container { padding-inline: 15px; }
+  
+  .btn {
+    color: var(--white);
+    text-transform: uppercase;
+    font-size: var(--fs-5);
+    border-radius: 100px;
+    padding: var(--padding, 8px 18px);
+    border: var(--border-width, 2px) solid transparent;
+    transition: var(--transition);
+  }
+  
+  .btn-primary {
+    background: var(--bright-navy-blue);
+    border-color: var(--bright-navy-blue);
+  }
+  
+  .btn-primary:is(:hover, :focus) {
+    background: var(--yale-blue);
+    border-color: var(--yale-blue);
+  }
+  
+  .btn-secondary { border-color: var(--white); }
+  
+  .btn-secondary:is(:hover, :focus) { background: hsla(0, 0%, 100%, 0.1); }
+  
+  .h1,
+  .h2,
+  .h3 {
+    font-weight: var(--fw-800);
+    font-family: var(--ff-montserrat);
+    text-transform: uppercase;
+  }
+  
+  .h1 {
+    color: var(--white);
+    font-size: var(--fs-1);
+  }
+  
+  .h2,
+  .h3 { color: var(--gunmetal); }
+  
+  .h2 { font-size: var(--fs-2); }
+  
+  .h3 {
+    font-size: var(--fs-3);
+    font-weight: var(--fw-700);
+  }
+  
+  .section-subtitle {
+    color: var(--bright-navy-blue);
+    font-size: var(--fs-5);
+    text-transform: uppercase;
+    font-family: var(--ff-montserrat);
+    margin-bottom: 8px;
+  }
+  
+  .section-title { margin-bottom: 15px; }
+  
+  .section-text {
+    color: var(--black-coral);
+    margin-bottom: 30px;
+  }
+  
+  .card-text {
+    color: var(--black-coral);
+    font-size: var(--fs-5);
+  }
+  
+  /*-----------------------------------*\
+   * #Header
+  \*-----------------------------------*/
+  
+  .header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding-top: 61px;
+    z-index: 4;
+  }
+  
+  .header-top {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    transition: var(--transition);
+    border-bottom: 1px solid hsla(0, 0%, 100%, 0.1);
+    padding-block: 15px;
+    z-index: 1;
+  }
+  
+  .header.active .header-top {
+    position: fixed;
+    background: var(--gunmetal);
+  }
+  
+  .header-top .container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: flex-start;
+    align-items: center;
+  }
+  
+  .helpline-box .wrapper { display: none; }
+  
+  .helpline-box .icon-box {
+    background: var(--bright-navy-blue);
+    padding: 6px;
+    border-radius: 50%;
+    color: var(--white);
+  }
+  
+  .helpline-box .icon-box ion-icon { --ionicon-stroke-width: 40px; }
+  
+  .header-top .logo { margin-inline: auto; }
+  
+  .header-top .logo img { max-width: 100px; }
+  
+  
+ 
+  
+  .header-bottom { border-bottom: 1px solid hsla(0, 0%, 100%, 0.1); }
+  
+  .header-bottom .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-block: 15px;
+  }
+  
+   
+  /*-----------------------------------*\
+   * #Home
+  \*-----------------------------------*/
+  
+  .hero {
+    background-image: url("welcomePage.jpg");
+    background-position: center;
+    background-color: hsla(0, 0%, 0%, 0.6);
+    background-blend-mode: overlay;
+    display: grid;
+    place-items: center;
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  
+  
+  .hero-text {
+    color: var(--white);
+    font-size: var(--fs-5);
+    margin-bottom: 40px;
+  }
+  
+  .btn-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  
+  /*-----------------------------------*\
+   * #destination
+  \*-----------------------------------*/
+  .popular{
+    margin-top: 120px;
+  }
+  .popular { padding-block: var(--section-padding); }
+  
+  .popular-list,
+  .popular-list > li:not(:last-child) { margin-bottom: 30px; }
+  
+  .popular-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius-25);
+    height: 430px;
+  }
+  
+  .popular-card .card-img { height: 100%; }
+  
+  .popular-card .card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .popular-card .card-content {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    background: var(--white);
+    border-radius: var(--radius-25);
+    padding: 20px;
+  }
+  
+  
+  .popular-card .card-rating {
+    background: var(--bright-navy-blue);
+    color: var(--white);
+    position: absolute;
+    top: 0;
+    right: 25px;
+    display: flex;
+    align-items: center;
+    gap: 1px;
+    transform: translateY(-50%);
+    padding: 6px 10px;
+    border-radius: 20px;
+    font-size: 14px;
+  }
+  
+  .popular-card .card-subtitle {
+    color: var(--blue-ncs);
+    font-size: var(--fs-6);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  
+  .popular-card .card-title { margin-bottom: 5px; }
+  
+  .popular-card :is(.card-subtitle, .card-title) > a { color: inherit; }
+  
+  .popular .btn { margin-inline: auto; }
+  
+  .button {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+
+
+  
+  
+  
+  /*-----------------------------------*\
+   * #Package
+  \*-----------------------------------*/
+  
+  .package { padding-block: var(--section-padding); }
+  
+  .package-list { margin-bottom: 40px; }
+  
+  .package-list > li:not(:last-child) { margin-bottom: 30px; }
+  
+  .package-card {
+    background: var(--cultured);
+    overflow: hidden;
+    border-radius: 15px;
+  }
+  
+  .package-card .card-banner { height: 250px; }
+  
+  .package-card .card-banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .package-card .card-content { padding: 30px 20px; }
+  
+  .package-card .card-title { margin-bottom: 15px; }
+  
+  .package-card .card-text {
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+  
+  .card-meta-list {
+    background: var(--white);
+    max-width: max-content;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 8px;
+    box-shadow: 0 0 5px hsla(0, 0%, 0%, 0.15);
+    border-radius: 50px;
+  }
+  
+  .card-meta-item { position: relative; }
+  
+  .card-meta-item:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    top: 4px;
+    right: -1px;
+    bottom: 4px;
+    width: 1px;
+    background: hsla(0, 0%, 0%, 0.3);
+  }
+  
+  .meta-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    padding-inline: 9px;
+    color: var(--black-coral);
+    font-size: var(--fs-8);
+  }
+  
+  .meta-box > ion-icon {
+    color: var(--bright-navy-blue);
+    font-size: 13px;
+  }
+  
+  .package-card .card-price {
+    background: var(--united-nations-blue);
+    color: var(--white);
+    padding: 25px 20px;
+    text-align: center;
+  }
+  
+  .package-card .card-price .wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 5px 15px;
+    margin-bottom: 10px;
+  }
+  
+  .package-card .card-price .reviews { font-size: var(--fs-5); }
+  
+  .package-card .card-rating {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1px;
+    font-size: 14px;
+  }
+  
+  .package-card .card-rating ion-icon:last-child { color: hsl(0, 0%, 80%); }
+  
+  .package-card .price {
+    font-size: var(--fs-2);
+    font-family: var(--ff-montserrat);
+    font-weight: var(--fw-800);
+    margin-bottom: 20px;
+  }
+  
+  .package-card .price span {
+    font-size: var(--fs-7);
+    font-weight: initial;
+  }
+  
+  .package .btn { margin-inline: auto; }
+  
+  
+  
+  
+  
+  /*-----------------------------------*\
+   * #Gallery
+  \*-----------------------------------*/
+  
+  .gallery { padding-block: var(--section-padding); }
+  
+  .gallery-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  
+  .gallery-image {
+    width: 100%;
+    height: 100%;
+    border-radius: var(--radius-15);
+    overflow: hidden;
+  }
+  
+  .gallery-item:nth-child(3) { grid-area: 1 / 2 / 3 / 3; }
+  
+  .gallery-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  
+  
+  
+  
+  /*-----------------------------------*\
+   * #contact
+  \*-----------------------------------*/
+  
+  .cta {
+    background: var(--bright-navy-blue);
+    padding-block: var(--section-padding);
+  }
+  
+  .cta :is(.section-subtitle, .section-title, .section-text) { color: var(--white); }
+  
+  .cta .section-text { font-size: var(--fs-5); }
+  
+  
+  
+  
+  
+  /*-----------------------------------*\
+   * #FOOTER
+  \*-----------------------------------*/
+  
+  .footer-top {
+    background: var(--gunmetal);
+    padding-block: var(--section-padding);
+    color: var(--gainsboro);
+  }
+  
+  .footer-brand { margin-bottom: 30px; }
+  
+  .footer-brand img { width: 180px; }
+  
+  .footer-brand .logo { margin-bottom: 20px; }
+  
+  .footer-text {
+    font-size: var(--fs-5);
+    line-height: 1.7;
+  }
+  
+  .footer-contact { margin-bottom: 30px; }
+  
+  .contact-title {
+    position: relative;
+    font-family: var(--ff-montserrat);
+    font-weight: var(--fw-500);
+    margin-bottom: 30px;
+  }
+ 
+  .contact-title::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 90px;
+    height: 2px;
+    background: var(--bright-navy-blue);
+  }
+  
+  .contact-text {
+    font-size: var(--fs-5);
+    margin-bottom: 15px;
+    max-width: 200px;
+  }
+  
+  .contact-item {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .contact-item ion-icon { --ionicon-stroke-width: 40px; }
+  
+  .contact-link,
+  address {
+    font-style: normal;
+    color: var(--gainsboro);
+    font-size: var(--fs-5);
+  }
+  
+  .contact-link:is(:hover, :focus) { color: var(--white); }
+  
+  .form-text {
+    font-size: var(--fs-5);
+    margin-bottom: 20px;
+  }
+  
+ 
+  
+  .footer-form .btn { width: 100%; }
+  
+  .footer-bottom {
+    --gunmetal: hsl(205, 36%, 17%);
+    background: var(--gunmetal);
+    padding-block: 20px;
+    text-align: center;
+  }
+  
+  .copyright {
+    color: var(--gainsboro);
+    font-size: var(--fs-5);
+    margin-bottom: 10px;
+  }
+  
+  .copyright a {
+    color: inherit;
+    display: inline-block;
+  }
+  
+  .copyright a:is(:hover, :focus) { color: var(--white); }
+  
+  .footer-bottom-list {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 21px;
+  }
+  
+  .footer-bottom-list > li { position: relative; }
+  
+  .footer-bottom-list > li:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    top: 3px;
+    right: -10px;
+    bottom: 3px;
+    width: 1px;
+    background: hsla(0, 0%, 100%, 0.2);
+  }
+  
+  .footer-bottom-link {
+    color: var(--gainsboro);
+    font-size: var(--fs-7);
+    transition: var(--transition);
+  }
+  
+  .footer-bottom-link:is(:hover, :focus) { color: var(--white); }
+  
+  
+  
+  
+  
+  /*-----------------------------------*\
+   * #GO TO TOP
+  \*-----------------------------------*/
+  
+  .go-top {
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+    width: 35px;
+    height: 35px;
+    background: var(--bright-navy-blue);
+    color: var(--white);
+    display: grid;
+    place-items: center;
+    font-size: 18px;
+    border-radius: 6px;
+    box-shadow: 0 1px 3px hsla(0, 0%, 0%, 0.5);
+    opacity: 0;
+    transform: translateY(10px);
+    visibility: hidden;
+    transition: var(--transition);
+  }
+  
+  .go-top.active {
+    opacity: 0.8;
+    transform: translateY(0);
+    visibility: visible;
+  }
+  
+  .go-top:is(:hover, :focus) { opacity: 1; }
+  
+  
+  
+  
+  
+  /*-----------------------------------*\
+   * #Media Queries diff type px screen
+  \*-----------------------------------*/
+  
+  /**
+   * responsive for larger than 580px screen
+   */
+  
+  @media (min-width: 580px) {
+  
+    /**
+     * REUSED STYLE
+     */
+  
+    .container {
+      max-width: 580px;
+      margin-inline: auto;
+    }
+  
+    .btn {
+      --fs-5: 16px;
+      --padding: 12px 30px;
+    }
+  
+    section:not(.cta) :is(.section-subtitle, .section-title, .section-text) {
+      text-align: center;
+    }
+  
+    .section-text { margin-bottom: 40px; }
+  
+    .card-text { --fs-5: 15px; }
+  
+  
+  
+    /**
+     * HEADER
+     */
+  
+    .header { padding-top: 83px; }
+  
+    .helpline-box .icon-box { padding: 14px; }
+  
+    .header-top .logo img { max-width: unset; }
+  
+    .search-btn { font-size: 30px; }
+  
+    .nav-open-btn { font-size: 40px; }
+  
+    .header .btn {
+      --fs-5: 14px;
+      --padding: 6px 20px;
+    }
+  
+  
+  
+    /**
+     * HERO
+     */
+  
+    .hero {
+      min-height: 800px;
+      padding-top: 85px;
+    }
+  
+    .hero-text { --fs-5: 15px; }
+  
+    .btn-group { gap: 20px; }
+  
+  
+  
+    /**
+     * TOUR SEARCH
+     */
+  
+    .tour-search-form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: flex-end;
+      gap: 15px;
+    }
+  
+    .tour-search-form .input-wrapper { margin-bottom: 0; }
+  
+   
+  
+    .tour-search .btn {
+      grid-column: span 2;
+      margin-top: 20px;
+    }
+  
+  
+  
+  /**
+   * responsive for larger than 768px screen
+   */
+  
+  @media (min-width: 768px) {
+  
+    /**
+     * CUSTOM PROPERTY
+     */
+  
+    :root {
+  
+      /**
+       * typography
+       */
+  
+      --fs-5: 15px;
+  
+    }
+  
+  
+  
+    /**
+     * REUSED STYLE
+     */
+  
+    .container { max-width: 800px; }
+  
+    .section-text {
+      max-width: 60ch;
+      margin-inline: auto;
+    }
+  
+  
+  
+    /**
+     * HEADER
+     */
+  
+    .helpline-box {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      gap: 10px;
+    }
+  
+    .helpline-box .wrapper {
+      display: block;
+      color: var(--white);
+      font-size: var(--fs-6);
+    }
+  
+    .social-list { gap: 10px; }
+  
+  
+  
+    /**
+     * POPULAR
+     */
+  
+    .popular-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      margin-bottom: 50px;
+    }
+  
+    .popular-list > li:not(:last-child) { margin-bottom: 0; }
+  
+    .popular-card .card-content { right: 20px; }
+  
+  
+  
+    /**
+     * PACKAGE
+     */
+  
+    .package-list { margin-bottom: 50px; }
+  
+    .package-list > li:not(:last-child) { margin-bottom: 40px; }
+  
+    .package-card {
+      display: grid;
+      grid-template-columns: 1.3fr 1.5fr 1fr;
+    }
+  
+    .package-card .card-banner { height: 100%; }
+  
+    .package-card .card-content { padding: 40px; }
+  
+    .package-card .card-price {
+      display: grid;
+      place-content: center;
+    }
+  
+    .package-card .card-price .wrapper { margin-bottom: 15px; }
+  
+  
+  
+    /**
+     * GALLERY
+     */
+  
+    .gallery { padding-bottom: calc(var(--section-padding * 2)); }
+  
+    .gallery-list {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+  
+    .gallery-image { border-radius: var(--radius-25); }
+  
+  
+  
+    /**
+     * CTA
+     */
+  
+    .cta .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  
+    .cta-content { width: calc(100% - 225px); }
+  
+    .cta .section-text { margin-inline: 0; }
+  
+  
+    /**
+     * FOOTER
+     */
+  
+    .footer-form .btn { width: max-content; }
+  
+  }
+  
+  /**
+   * responsive for larger than 992px screen
+   */
+  
+  @media (min-width: 992px) {
+  
+    /**
+     * REUSED STYLE
+     */
+  
+    .container { max-width: 1050px; }
+  
+  
+  
+    /**
+     * HEADER
+     */
+  
+    .header.active .header-top {
+      position: unset;
+      background: unset;
+    }
+  
+    .nav-open-btn,
+    .navbar-top { display: none; }
+  
+    .header-bottom { border-bottom: none; }
+  
+    .header.active .header-bottom {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: var(--white);
+      color: var(--onyx);
+      box-shadow: 0 2px 5px hsla(0, 0%, 0%, 0.08);
+      transition: var(--transition);
+    }
+  
+    .header-bottom .container { padding-block: 0; }
+  
+    .header .navbar { all: unset; }
+  
+    .navbar-list {
+      border-top: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  
+    .navbar-list li { border-bottom: none; }
+  
+    .navbar-link {
+      color: var(--white);
+      --fs-4: 16px;
+      font-weight: unset;
+      text-transform: uppercase;
+      padding: 20px 15px;
+    }
+    .navbar-list {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+}
+
+.navbar-list li {
+  margin: 0 15px;
+}
+
+/* Style for the navbar links */
+.navbar-link {
+  text-decoration: none;
+  color: #ffffff; /* Default text color */
+  font-size: 16px;
+  padding: 10px 15px;
+  transition: color 0.3s, transform 0.3s;
+}
+
+/* Hover effect */
+.navbar-link:hover {
+  color: #007ff6; /* Change color on hover */
+  transform: scale(1.1); /* Slight zoom effect */
+}
+  
+    .header.active .navbar-link { color: var(--onyx); }
+  
+    .header.active .navbar-link:is(:hover, :focus) { color: var(--bright-navy-blue); }
+  
+    .header.active .social-link {
+      color: var(--onyx);
+      border-color: hsla(0, 0%, 0%, 0.15);
+    }
+  
+    .overlay { display: none; }
+  
+  
+  
+    /**
+     * HERO
+     */
+  
+    .hero .container { max-width: 740px; }
+  
+  
+  
+    /**
+     * TOUR SEARCH
+     */
+  
+    .tour-search-form { grid-template-columns: repeat(5, 1fr); }
+  
+    .tour-search .btn {
+      --padding: 15px;
+      grid-column: unset;
+      margin-top: 0;
+    }
+  
+  
+  
+    /**
+     * POPULAR
+     */
+  
+    .popular-list { grid-template-columns: repeat(3, 1fr); }
+  
+  
+  
+    /**
+     * PACKAGE sizing popular packages
+     */
+  
+    .meta-box { --fs-8: 13px; }
+  
+    .meta-box > ion-icon { font-size: 15px; }
+  
+  
+  
+    /**
+     * CTA 
+     */
+  
+    .cta .section-title { max-width: 25ch; }
+  
+  
+  
+    /**
+     * FOOTER
+     */
+  
+    .footer-top .container {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 100px;
+    }
+  
+    .footer-form { grid-column: unset; }
+  
+    
+  
+    .footer-form .btn { width: 100%; }
+  
+  }
+  
+  
+  /**
+   * responsive for larger than 1200px screen
+   */
+  
+  @media (min-width: 1200px) {
+  
+    /**
+     * CUSTOM PROPERTY
+     */
+  
+    :root {
+  
+      /**
+       * spacing
+       */
+  
+      --section-padding: 100px;
+  
+    }
+  
+    /**
+     * REUSED STYLE
+     */
+  
+    .container { max-width: 1180px; }
+  
+  }
+
+</style>
+</head>
+
+<body id="top">
+
+  <!-- HEADER -->
+  <header class="header" data-header>
+    <div class="overlay" data-overlay></div>
+
+    <div class="header-top">
+      <div class="container">
+        <a href="tel:+0138225180" class="helpline-box">
+          <div class="icon-box">
+            <ion-icon name="call-outline"></ion-icon>
+          </div>
+          <div class="wrapper">
+            <p class="helpline-title">For Further Inquiries:</p>
+            <p class="helpline-number">+60 13 822 5180</p>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="header-bottom">
+      <div class="container">
+        <nav class="navbar" data-navbar>
+          <div class="navbar-top">
+            <button class="nav-close-btn" aria-label="Close Menu" data-nav-close-btn>
+              <ion-icon name="close-outline"></ion-icon>
+            </button>
+          </div>
+
+          <ul class="navbar-list">
+            <li><a href="#home" class="navbar-link" data-nav-link>home</a></li>
+            
+            <li><a href="#destination" class="navbar-link" data-nav-link>destination</a></li>
+            <li><a href="#package" class="navbar-link" data-nav-link>packages</a></li>
+            <li><a href="#gallery" class="navbar-link" data-nav-link>gallery</a></li>
+            <li><a href="#contact" class="navbar-link" data-nav-link>contact us</a></li>
+          </ul>
+        </nav>
+
+      
+          <a href="http://localhost/week8/Login/adminLogin.html" id="loginBtn" class="btn btn-primary">LOGIN NOW</a>
+        
+        
+
+      </div>
+    </div>
+  </header>
+
+  <!-- About Us Section -->
+  
+
+  </header>
+
+
+
+
+
+  <main>
+    <article>
+
+      <!-- 
+        - #HERO
+      -->
+
+      <section class="hero" id="home">
+        <div class="container">
+
+          <h2 class="h1 hero-title">Journey to explore world</h2>
+
+          <p class="hero-text">
+            Welcome to our Travel Agency Apple Vacation.
+          </p>
+
+          <div class="btn-group">
+            
+          </div>
+
+        </div>
+      </section>
+
+
+
+      <!-- 
+        - #DESTINATION
+      -->
+
+      <section class="popular" id="destination">
+        <div class="container">
+
+          <p class="section-subtitle">Uncover place</p>
+
+          <h2 class="h2 section-title">Popular destination</h2>
+
+          <p class="section-text">
+            Check out our popular destination from all over the world.
+          </p>
+
+          <ul class="popular-list">
+
+            <li>
+              <div class="popular-card">
+
+                <figure class="card-img">
+                  <img src="popular-1.jpg" alt="San miguel, italy" loading="lazy">
+                </figure>
+
+                <div class="card-content">
+
+                  <div class="card-rating">
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                  </div>
+
+                  <p class="card-subtitle">
+                    <a href="#">Italy</a>
+                  </p>
+
+                  <h3 class="h3 card-title">
+                    <a href="#">San miguel</a>
+                  </h3>
+
+                  <p class="card-text">
+                    San Miguel is a vibrant and historic commune in the heart of Santiago. It offers a rich cultural and artistic scene, with museums, theaters, and galleries that showcase the local talent and heritage.
+                  </p>
+
+                </div>
+
+              </div>
+            </li>
+
+            <li>
+              <div class="popular-card">
+
+                <figure class="card-img">
+                  <img src="popular-2.jpg" alt="Burj khalifa, dubai" loading="lazy">
+                </figure>
+
+                <div class="card-content">
+
+                  <div class="card-rating">
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                  </div>
+
+                  <p class="card-subtitle">
+                    <a href="#">Dubai</a>
+                  </p>
+
+                  <h3 class="h3 card-title">
+                    <a href="#">Burj khalifa</a>
+                  </h3>
+
+                  <p class="card-text">
+                    If you are looking to travel in Dubai, you should consider to travel to Burj Khalifa.
+                  </p>
+
+                </div>
+
+              </div>
+            </li>
+
+            <li>
+              <div class="popular-card">
+
+                <figure class="card-img">
+                  <img src="popular-3.jpg" alt="Kyoto temple, japan" loading="lazy">
+                </figure>
+
+                <div class="card-content">
+
+                  <div class="card-rating">
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                  </div>
+
+                  <p class="card-subtitle">
+                    <a href="#">Japan</a>
+                  </p>
+
+                  <h3 class="h3 card-title">
+                    <a href="#">Kyoto temple</a>
+                  </h3>
+
+                  <p class="card-text">
+                    Kyoto Temple is the best place to travel in Japan.
+                  </p>
+
+                </div>
+
+              </div>
+            </li>
+
+          </ul>
+
+          <a href="http://localhost/week8/DestinationPage1/destination1.html">
+            <button class="btn btn-primary">More destination</button>
+          </a>
+          
+        
+
+
+        </div>
+      </section>
+      </div>
+			
+
+
+
+
+
+      <!-- 
+        - #PACKAGE
+      -->
+
+      <section class="package" id="package">
+        <div class="container">
+
+          <p class="section-subtitle">Popular Packages</p>
+
+          <h2 class="h2 section-title">Checkout Our Packages</h2>
+
+          <p class="section-text">
+            Here we offers packages holiday for the perfect traveller who are going to travel with many member.
+          </p>
+
+          <ul class="package-list">
+
+            <li>
+              <div class="package-card">
+
+                <figure class="card-banner">
+                  <img src="sabah.jpg" alt="Experience The Great Holiday On Beach" loading="lazy">
+                </figure>
+
+                <div class="card-content">
+
+                  <h3 class="h3 card-title">Experience The Great Holiday On Beach in Sabah</h3>
+
+                  <p class="card-text">
+                   Discover the breathtaking beauty of Sabah, Malaysia, where stunning beaches, lush rainforests, and 
+                   majestic Mount Kinabalu promise an unforgettable adventure for nature lovers and thrill-seekers alike.
+                  </p>
+
+                  <ul class="card-meta-list">
+
+                    <li class="card-meta-item">
+                      <div class="meta-box">
+                        <ion-icon name="time"></ion-icon>
+
+                        <p class="text">7D/6N</p>
+                      </div>
+                    </li>
+
+                    <li class="card-meta-item">
+                      <div class="meta-box">
+                        <ion-icon name="people"></ion-icon>
+
+                        <p class="text">pax: 10</p>
+                      </div>
+                    </li>
+
+                    <li class="card-meta-item">
+                      <div class="meta-box">
+                        <ion-icon name="location"></ion-icon>
+
+                        <p class="text">Malaysia</p>
+                      </div>
+                    </li>
+
+                  </ul>
+
+                </div>
+
+                <div class="card-price">
+
+                  <div class="wrapper">
+
+                    <p class="reviews">(25 reviews)</p>
+
+                    <div class="card-rating">
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star"></ion-icon>
+                    </div>
+
+                  </div>
+
+                  <p class="price">
+                    $750
+                    <span>/ per person</span>
+                  </p>
+
+                  
+
+                </div>
+
+              </div>
+            </li>
+
+            <li>
+              <div class="package-card">
+
+                <figure class="card-banner">
+                  <img src="sungai.jpg" alt="Summer Holiday To The Oxolotan River" loading="lazy">
+                </figure>
+
+                <div class="card-content">
+
+                  <h3 class="h3 card-title">Summer Holiday To The Oxolotan River</h3>
+
+                  <p class="card-text">
+                    Embark on a journey along The Oxolotan River, where you can marvel at 
+                    the stunning natural beauty, explore lush jungles, and experience the 
+                    rich cultural heritage of the surrounding villages, making it an ideal 
+                    destination for adventurers and nature enthusiasts.
+                  </p>
+
+                  <ul class="card-meta-list">
+
+                    <li class="card-meta-item">
+                      <div class="meta-box">
+                        <ion-icon name="time"></ion-icon>
+
+                        <p class="text">7D/6N</p>
+                      </div>
+                    </li>
+
+                    <li class="card-meta-item">
+                      <div class="meta-box">
+                        <ion-icon name="people"></ion-icon>
+
+                        <p class="text">pax: 10</p>
+                      </div>
+                    </li>
+
+                    <li class="card-meta-item">
+                      <div class="meta-box">
+                        <ion-icon name="location"></ion-icon>
+
+                        <p class="text">Mexico</p>
+                      </div>
+                    </li>
+
+                  </ul>
+
+                </div>
+
+                <div class="card-price">
+
+                  <div class="wrapper">
+
+                    <p class="reviews">(20 reviews)</p>
+
+                    <div class="card-rating">
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star"></ion-icon>
+                    </div>
+
+                  </div>
+
+                  <p class="price">
+                    $520
+                    <span>/ per person</span>
+                  </p>
+
+                  
+
+                </div>
+
+              </div>
+            </li>
+
+            <li>
+              <div class="package-card">
+
+                <figure class="card-banner">
+                  <img src="island.jpg" alt="Santorini Island's Weekend Vacation" loading="lazy">
+                </figure>
+
+                <div class="card-content">
+
+                  <h3 class="h3 card-title">Santorini Island's Weekend Vacation</h3>
+
+                  <p class="card-text">
+                    Immerse yourself in the enchanting beauty of Santorini Island, where breathtaking sunsets, 
+                    iconic white-washed architecture, and crystal-clear waters create a picturesque paradise 
+                    for romantic getaways and unforgettable adventures.
+                  </p>
+
+                  <ul class="card-meta-list">
+
+                    <li class="card-meta-item">
+                      <div class="meta-box">
+                        <ion-icon name="time"></ion-icon>
+
+                        <p class="text">7D/6N</p>
+                      </div>
+                    </li>
+
+                    <li class="card-meta-item">
+                      <div class="meta-box">
+                        <ion-icon name="people"></ion-icon>
+
+                        <p class="text">pax: 10</p>
+                      </div>
+                    </li>
+
+                    <li class="card-meta-item">
+                      <div class="meta-box">
+                        <ion-icon name="location"></ion-icon>
+
+                        <p class="text">Greek Cyclades</p>
+                      </div>
+                    </li>
+
+                  </ul>
+
+                </div>
+
+                <div class="card-price">
+
+                  <div class="wrapper">
+
+                    <p class="reviews">(40 reviews)</p>
+
+                    <div class="card-rating">
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star"></ion-icon>
+                    </div>
+
+                  </div>
+
+                  <p class="price">
+                    $660
+                    <span>/ per person</span>
+                  </p>
+
+                  
+
+                </div>
+
+              </div>
+            </li>
+
+          </ul>
+
+          <a href="http://localhost/week8/packages/packages.php">
+            
+
+          <button class="btn btn-primary">View All Packages</button>
+          </a>
+
+
+        </div>
+      </section>
+
+
+
+
+
+      <!-- 
+        - #GALLERY
+      -->
+
+      <section class="gallery" id="gallery">
+        <div class="container">
+
+          <p class="section-subtitle">Photo Gallery</p>
+
+          <h2 class="h2 section-title">Photo's From Travellers</h2>
+
+          <p class="section-text">
+            Explore an exquisite collection of my travel adventures, 
+            from the sun-kissed beaches of Bali to the charming streets of Paris, 
+            capturing the essence of each destination and the unforgettable memories made along the way.
+          </p>
+
+          <ul class="gallery-list">
+
+            <li class="gallery-item">
+              <figure class="gallery-image">
+                <img src="japan.jpg" alt="Gallery image">
+              </figure>
+            </li>
+
+            <li class="gallery-item">
+              <figure class="gallery-image">
+                <img src="photo_2024-08-07_20-49-41.jpg " alt="Gallery image">
+              </figure>
+            </li>
+
+            <li class="gallery-item">
+              <figure class="gallery-image">
+                <img src="photo_2024-08-07_20-49-15.jpg " alt="Gallery image">
+              </figure>
+            </li>
+
+            <li class="gallery-item">
+              <figure class="gallery-image">
+                <img src="photo_2024-08-07_20-49-34.jpg" alt="Gallery image">
+              </figure>
+            </li>
+
+            <li class="gallery-item">
+              <figure class="gallery-image">
+                <img src="swet.jpg" alt="Gallery image">
+              </figure>
+            </li>
+
+          </ul>
+
+        </div>
+      </section>
+
+
+
+
+
+      <!-- 
+        - #Conctact
+      -->
+
+      <section class="cta" id="contact">
+        <div class="container">
+
+          <div class="cta-content">
+            <p class="section-subtitle">Call To Action</p>
+
+            <h2 class="h2 section-title">Ready For Unforgatable Travel. Remember Us!</h2>
+
+            <p class="section-text">
+              
+            </p>
+          
+      </section>
+
+    </article>
+  </main>
+
+
+
+
+
+  <!-- 
+    - #FOOTER
+  -->
+
+  <footer class="footer">
+
+    <div class="footer-top">
+      <div class="container">
+
+       
+
+        <div class="footer-contact">
+
+          <h4 class="contact-title">Contact Us</h4>
+
+          <p class="contact-text">
+            Feel free to contact and reach us !!
+          </p>
+
+          <ul>
+
+            <li class="contact-item">
+              <ion-icon name="call-outline"></ion-icon>
+
+              <a href="tel:+01123456790" class="contact-link">+60 3822 5180</a>
+            </li>
+
+            <li class="contact-item">
+              <ion-icon name="mail-outline"></ion-icon>
+
+              <a href="mailto:info.tourly.com" class="contact-link">info.appletravel.com</a>
+            </li>
+
+            <li class="contact-item">
+              <ion-icon name="location-outline"></ion-icon>
+
+              <address>Malaysia</address>
+            </li>
+
+          </ul>
+
+        </div>
+
+        
+
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container">
+
+        <p class="copyright">
+           Copyright © 1996-2024 Apple Vacations Sdn Bhd Reg No. 199101010365 (220677-X) (KPK/LN No. 2253). LEI: 98450048D0KEF56S6D39. All rights reserved.
+The product images shown are from Internet sources and are for illustration purposes only.
+        </p>
+
+        
+
+      </div>
+    </div>
+
+  </footer>
+
+
+
+
+
+  <!-- 
+    - #GO TO TOP
+  -->
+
+  <a href="#top" class="go-top" data-go-top>
+    <ion-icon name="chevron-up-outline"></ion-icon>
+  </a>
+
+
+
+  <!-- 
+    - custom js link
+  -->
+  <script src="script.js"></script>
+
+  <!-- 
+    - ionicon link
+  -->
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+</body>
+
+</html>
