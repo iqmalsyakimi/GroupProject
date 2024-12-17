@@ -160,7 +160,7 @@ $result = $conn->query($sql);
             text-align: center;
             background: #1e90ff;
             color: white;
-            padding: 10px;
+            padding: 5px;
             border-radius: 5px;
             text-decoration: none;
         }
